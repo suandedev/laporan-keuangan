@@ -21,6 +21,7 @@ class Produk extends CI_Controller
         $this->load->view('footer');
     }
 
+    // tambah produk
     public function addProduk()
     {
         $this->form_validation->set_rules(
@@ -56,10 +57,23 @@ class Produk extends CI_Controller
         }
     }
 
+    // hapus produk
     public function hapus($id)
     {
         $this->m_laporan->hapusProduk($id);
         $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         redirect('produk');
+    }
+
+    // detail produk
+    public function detail($id)
+    {
+        $data['title'] = 'Produk';
+        $data['produk'] = $this->m_laporan->getProduk($id);
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_detailProduk', $data);
+        $this->load->view('footer');
+        
     }
 }
