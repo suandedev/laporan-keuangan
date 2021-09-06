@@ -1,16 +1,17 @@
 <div class="container-fluid">
 
-    <!-- edit produk -->
-    <?php if ($tag != 'edit') { ?>
-        <h1 class="h3 mb-4 text-gray-800"><?= $tag; ?> Produk</h1>
-        <div class="row justify-content-center">
-            <div class="col-lg-4">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary"><?= $tag; ?> <?= $title; ?></h6>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="<?= base_url('produk/aksiEdit/'.$produk[0]['id']); ?>" enctype="multipart/form-data" class="user">
+    <h1 class="h3 mb-4 text-gray-800"><?= $tag; ?> Produk</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"><?= $tag; ?> <?= $title; ?></h6>
+                </div>
+                <div class="card-body">
+
+                    <!-- edit produk -->
+                    <?php if ($tag != 'Tambah') { ?>
+                        <form method="POST" action="<?= base_url('produk/aksiEdit/' . $produk[0]['id']); ?>" enctype="multipart/form-data" class="user">
                             <div class="form-group">
                                 <input type="text" name="nama" class="form-control form-control-user" id="nama" placeholder="masukan nama..." value="<?= $produk[0]['nama']; ?>">
                             </div>
@@ -39,23 +40,9 @@
                                 simpan
                             </button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- add produk -->
-    <?php } else { ?>
-        <h1 class="h3 mb-4 text-gray-800"><?= $tag; ?> Produk</h1>
 
-        <!-- form add produk -->
-        <div class="row justify-content-center">
-            <div class="col-lg-4">
-
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary"><?= $tag; ?> <?= $title; ?></h6>
-                    </div>
-                    <div class="card-body">
+                        <!-- add produk -->
+                    <?php } else { ?>
                         <form method="POST" action="<?= base_url('produk/addProduk'); ?>" enctype="multipart/form-data" class="user">
                             <div class="form-group">
                                 <input type="text" name="nama" class="form-control form-control-user" id="nama" placeholder="masukan nama...">
@@ -75,9 +62,9 @@
                                 simpan
                             </button>
                         </form>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-    <?php } ?>
+    </div>
 </div>

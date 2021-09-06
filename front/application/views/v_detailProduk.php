@@ -5,7 +5,7 @@
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="<?= base_url('assets/upload/user.png'); ?>" class="img-fluid rounded-start justify-content-center" alt="...">
+                <img style="max-width: 200px;" src="<?= base_url('assets/upload/'.$produk[0]['gambar']); ?>" class="img-fluid rounded-start justify-content-center" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">

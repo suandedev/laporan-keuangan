@@ -15,6 +15,7 @@ class M_laporan extends CI_Model {
     public function __construct()
     {
         parent::__construct();
+        
         // select
         $this->Sproduk = "$this->laporan.id, $this->produk.nama, $this->produk.harga, $this->laporan.jumlah, $this->laporan.date_created, $this->laporan.date_modify,";
 
@@ -43,24 +44,9 @@ class M_laporan extends CI_Model {
     }
 
     // add produk
-    public function addProduk()
+    public function addProduk($data)
     {
-        $data = [
-            'nama' => htmlspecialchars($this->input->POST('nama')),
-            'harga' => htmlspecialchars($this->input->POST('harga')),
-            'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
-            'gambar' => '',
-            'date_created' => time(),
-            'date_modify' => time()
-        ];
-
         $this->db->insert($this->produk, $data);
-    }
-
-    // upload gambar
-    private function _gambar()
-    {
-        
     }
 
     // hapus produk

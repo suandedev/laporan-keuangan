@@ -9,6 +9,8 @@ class Produk extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->library('session');
+        $this->load->library('upload');
+        $this->load->helper(array('form'));
     }
 
     public function index()
@@ -52,7 +54,37 @@ class Produk extends CI_Controller
             $this->load->view('v_formProduk', $data);
             $this->load->view('footer');
         } else {
-            $this->m_laporan->addProduk();
+
+            $config['upload_path']          = './assets/upload/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 2048;
+    
+            $this->load->library('upload', $config);
+
+            $this->upload->initialize($config);
+    
+            if (!$this->upload->do_upload('gambar')) {
+                $data = [
+                    'error' => $this->upload->display_errors()
+                ];
+                $this->load->view('v_formProduk', $data);
+            } else {
+                $data = [
+                    'upload_data' => $this->upload->data()
+                ];
+                $this->load->view('v_formProduk', $data);
+            }
+
+            $data = [
+                'nama' => htmlspecialchars($this->input->POST('nama')),
+                'harga' => htmlspecialchars($this->input->POST('harga')),
+                'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
+                'gambar' => $this->upload->data('file_name'),
+                'date_created' => time(),
+                'date_modify' => time()
+            ];
+
+            $this->m_laporan->addProduk($data);
             $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
             redirect('produk');
         }
@@ -75,7 +107,6 @@ class Produk extends CI_Controller
         $this->load->view('sidebar', $data);
         $this->load->view('v_detailProduk', $data);
         $this->load->view('footer');
-        
     }
 
     // edit produk
@@ -90,10 +121,11 @@ class Produk extends CI_Controller
         $this->load->view('footer');
     }
 
+    // aksi edit
     public function aksiEdit($id)
     {
         $this->m_laporan->editProduk($id);
-            $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-            redirect('produk');
+        $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+        redirect('produk');
     }
 }
