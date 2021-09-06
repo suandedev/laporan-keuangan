@@ -45,6 +45,7 @@ class Produk extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Produk';
+            $data['tag'] = 'Tambah';
             $data['laporan'] = $this->m_laporan->getProduk();
             $this->load->view('header', $data);
             $this->load->view('sidebar', $data);
@@ -75,5 +76,24 @@ class Produk extends CI_Controller
         $this->load->view('v_detailProduk', $data);
         $this->load->view('footer');
         
+    }
+
+    // edit produk
+    public function editProduk($id)
+    {
+        $data['title'] = 'Produk';
+        $data['tag'] = 'Edit';
+        $data['produk'] = $this->m_laporan->getProduk($id);
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_formProduk', $data);
+        $this->load->view('footer');
+    }
+
+    public function aksiEdit($id)
+    {
+        $this->m_laporan->editProduk($id);
+            $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+            redirect('produk');
     }
 }

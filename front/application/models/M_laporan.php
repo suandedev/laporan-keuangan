@@ -49,6 +49,7 @@ class M_laporan extends CI_Model {
             'nama' => htmlspecialchars($this->input->POST('nama')),
             'harga' => htmlspecialchars($this->input->POST('harga')),
             'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
+            'gambar' => '',
             'date_created' => time(),
             'date_modify' => time()
         ];
@@ -56,10 +57,32 @@ class M_laporan extends CI_Model {
         $this->db->insert($this->produk, $data);
     }
 
+    // upload gambar
+    private function _gambar()
+    {
+        
+    }
+
     // hapus produk
     public function hapusProduk($id)
     {
         $this->db->delete($this->produk, ['id' => $id]);   
+    }
+
+    // edit produk
+    public function editProduk($id)
+    {
+        $getProduk = $this->getProduk($id);
+        $data = [
+            'nama' => htmlspecialchars($this->input->POST('nama')),
+            'harga' => htmlspecialchars($this->input->POST('harga')),
+            'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
+            'gambar' => '',
+            'date_created' => $getProduk[0]['date_created'],
+            'date_modify' => time()
+        ];
+
+        $this->db->update($this->produk, $data, ['id' => $id]);
     }
 
 }

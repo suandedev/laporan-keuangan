@@ -51,7 +51,7 @@
                                 <td><?= date('Y-m-d', $row['date_modify']); ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('produk/detail/' . $row['id']); ?>" class="btn btn-outline-primary"><i class="fa fa-eye"> detail</i></a>
-                                    <button type="button" class="btn btn-outline-success"><i class='fa fa-edit'></i> edit</button>
+                                    <a href="<?= base_url('produk/editProduk/'.$row['id']); ?>" class="btn btn-outline-success"><i class='fa fa-edit'></i> edit</a>
                                     <a href="<?= base_url('produk/hapus/'. $row['id']); ?>" class="btn btn-outline-danger" onclick="return confirm('yakin?')"><i class='fa fa-trash'></i> hapus</a>
 
                                 </td>
