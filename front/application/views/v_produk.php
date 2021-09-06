@@ -14,13 +14,16 @@
 
                     <form method="POST" action="<?= base_url('produk/addProduk'); ?>" class="user">
                         <div class="form-group">
-                            <input type="text" name="nama" class="form-control form-control-user" id="nama" placeholder="masukan nama...">
+                            <input type="text" name="nama" class="form-control form-control-user" id="nama" placeholder="masukan nama..." >
+                            <?= form_error('produk'); ?>
                         </div>
                         <div class="form-group">
                             <input type="number" name="harga" class="form-control form-control-user" id="harga" placeholder="masukan harga...">
+                            <?= form_error('harga'); ?>
                         </div>
                         <div class="form-group">
                             <input type="text" name="deskripsi" class="form-control form-control-user" id="deskripsi" placeholder="masukan deskripsi...">
+                            <?= form_error('deskripsi'); ?>
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             simpan
@@ -28,7 +31,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
     
@@ -40,7 +42,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
                             <th>no</th>
                             <th>produk</th>
@@ -51,7 +53,7 @@
                             <th>aksi </th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot class="text-center">
                         <tr>
                             <th>no</th>
                             <th>produk</th>
@@ -75,7 +77,7 @@
                                 <td class="text-center">
                                     <button type="button" class="btn btn-outline-primary"><i class="fa fa-eye"> detail</i></button>
                                     <button type="button" class="btn btn-outline-success"><i class='fa fa-edit'></i> edit</button>
-                                    <button type="button" class="btn btn-outline-danger"><i class='fa fa-edit'></i> edit</button>
+                                    <button type="button" class="btn btn-outline-danger"><i class='fa fa-trash'></i> hapus</button>
 
                                 </td>
                             </tr>
