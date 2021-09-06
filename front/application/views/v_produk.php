@@ -8,21 +8,20 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Input Transakasi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Input <?= $title; ?></h6>
                 </div>
                 <div class="card-body">
 
                     <form method="POST" action="<?= base_url('laporan/addLaporan'); ?>" class="user">
                         <div class="form-group">
-                            <input type="text" name="produk" class="form-control form-control-user" id="produk" placeholder="masukan produk...">
+                            <input type="text" name="nama" class="form-control form-control-user" id="nama" placeholder="masukan nama...">
                         </div>
                         <div class="form-group">
                             <input type="text" name="harga" class="form-control form-control-user" id="harga" placeholder="masukan harga...">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="jumlah" class="form-control form-control-user" id="jumlah" placeholder="masukan jumlah...">
+                            <input type="text" name="deskripsi" class="form-control form-control-user" id="deskripsi" placeholder="masukan deskripsi...">
                         </div>
-                        
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             simpan
                         </button>
