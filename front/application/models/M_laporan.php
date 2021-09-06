@@ -22,7 +22,7 @@ class M_laporan extends CI_Model {
         $this->Jproduk = "$this->produk.id = $this->laporan.id_produk";
     }
     
-    
+    // get laporan
     public function getLaporan( $id = null)
     {
         if($id != null) {
@@ -31,6 +31,15 @@ class M_laporan extends CI_Model {
         $this->db->select($this->Sproduk);
         $this->db->join($this->produk, $this->Jproduk);
         return $this->db->get($this->laporan)->result_array();
+    }
+
+    // get produk
+    public function getProduk($id = null) 
+    {
+        if($id != null) {
+            $this->db->where(['id' => $id]);
+        }
+        return $this->db->get($this->produk)->result_array();
     }
 
 }

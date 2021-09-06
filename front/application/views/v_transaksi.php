@@ -2,6 +2,7 @@
 
     <h1 class="h3 mb-4 text-gray-800">Laporan Keuangan</h1>
 
+    <!-- form add transaksi -->
     <div class="row justify-content-center">
         <div class="col-lg-4">
 
@@ -31,6 +32,7 @@
 
         </div>
     </div>
+    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
