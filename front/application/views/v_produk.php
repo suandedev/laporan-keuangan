@@ -8,8 +8,6 @@
         </div>
     </div>
 
-
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -54,7 +52,7 @@
                                 <td class="text-center">
                                     <button type="button" class="btn btn-outline-primary"><i class="fa fa-eye"> detail</i></button>
                                     <button type="button" class="btn btn-outline-success"><i class='fa fa-edit'></i> edit</button>
-                                    <button type="button" class="btn btn-outline-danger"><i class='fa fa-trash'></i> hapus</button>
+                                    <a href="<?= base_url('produk/hapus/'. $row['id']); ?>" class="btn btn-outline-danger" onclick="return confirm('yakin?')"><i class='fa fa-trash'></i> hapus</a>
 
                                 </td>
                             </tr>

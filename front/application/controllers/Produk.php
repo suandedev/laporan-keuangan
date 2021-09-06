@@ -53,12 +53,13 @@ class Produk extends CI_Controller
             $this->m_laporan->addProduk();
             $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
             redirect('produk');
-            // if ($this->m_laporan->addProduk()) {
-            //     $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-            //     redirect('produk');
-            // } else {
-            //     redirect('produk');
-            // }
         }
+    }
+
+    public function hapus($id)
+    {
+        $this->m_laporan->hapusProduk($id);
+        $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
+        redirect('produk');
     }
 }

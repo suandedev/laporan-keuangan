@@ -56,4 +56,10 @@ class M_laporan extends CI_Model {
         $this->db->insert($this->produk, $data);
     }
 
+    // hapus produk
+    public function hapusProduk($id)
+    {
+        $this->db->delete($this->produk, ['id' => $id]);   
+    }
+
 }
