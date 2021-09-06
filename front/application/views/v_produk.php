@@ -12,12 +12,12 @@
                 </div>
                 <div class="card-body">
 
-                    <form method="POST" action="<?= base_url('laporan/addLaporan'); ?>" class="user">
+                    <form method="POST" action="<?= base_url('produk/addProduk'); ?>" class="user">
                         <div class="form-group">
                             <input type="text" name="nama" class="form-control form-control-user" id="nama" placeholder="masukan nama...">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="harga" class="form-control form-control-user" id="harga" placeholder="masukan harga...">
+                            <input type="number" name="harga" class="form-control form-control-user" id="harga" placeholder="masukan harga...">
                         </div>
                         <div class="form-group">
                             <input type="text" name="deskripsi" class="form-control form-control-user" id="deskripsi" placeholder="masukan deskripsi...">

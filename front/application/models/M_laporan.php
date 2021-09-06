@@ -42,4 +42,18 @@ class M_laporan extends CI_Model {
         return $this->db->get($this->produk)->result_array();
     }
 
+    // add produk
+    public function addProduk()
+    {
+        $data = [
+            'nama' => htmlspecialchars($this->input->POST('nama')),
+            'harga' => htmlspecialchars($this->input->POST('harga')),
+            'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
+            'date_created' => time(),
+            'date_modify' => time()
+        ];
+
+        $this->db->insert($this->produk, $data);
+    }
+
 }
