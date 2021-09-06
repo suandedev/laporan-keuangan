@@ -8,8 +8,9 @@ class Produk extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->library('session');
+        
     }
-
 
     public function index()
     {
@@ -23,15 +24,6 @@ class Produk extends CI_Controller
 
     public function addProduk()
     {
-
-        $this->form_validation->set_rules(
-            'produk',
-            'Produk',
-            'trim|required',
-            [
-                'required' => 'produk tidak boleh kosong',
-            ]
-        );
         $this->form_validation->set_rules(
             'harga',
             'Harga',
@@ -59,9 +51,8 @@ class Produk extends CI_Controller
             $this->load->view('v_produk', $data);
             $this->load->view('footer');
         } else {
-            return true;
-            die;
             if ($this->m_laporan->addProduk()) {
+                $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
                 redirect('produk');
             } else {
                 redirect('produk');
