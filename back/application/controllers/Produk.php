@@ -93,4 +93,35 @@ class Produk extends RestController {
 			], 404 );
 		}
     }
+
+    // update
+    public function index_put()
+    {
+        $id = $this->put('id');
+
+        $data = [
+            'nama' => $this->put('nama'),
+            'harga_jual' => $this->put('harga_jual'),
+            'harga_modal' => $this->put('harga_modal'),
+            'deskripsi' => $this->put('deskripsi'),
+            'gambar' => $this->put('gambar'),
+            'date_created' => $this->put('date_created'),
+            'date_modify' => time(),
+        ];
+
+        if ($this->api->updateProduk($data, $id) > 0) {
+			//ok
+			$this->response( [
+				'status' => true,
+				'result' => $data,
+				'message' => 'data Produk has been updated'
+			], 200 );
+		} else {
+			//id not found
+			$this->response( [
+				'status' => false,
+				'message' => 'faild to update data'
+			], 404 );
+		}
+    }
 }

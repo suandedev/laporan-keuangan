@@ -26,4 +26,11 @@ class M_api extends CI_Model {
         $this->db->insert($this->produk, $data);
         return $this->db->affected_rows();
     }
+
+    // update
+    public function updateProduk($data, $id)
+    {
+        $this->db->update($this->produk, $data, ['id' => $id]); 
+        return $this->db->affected_rows();
+    }
 }
