@@ -20,6 +20,7 @@ class Transaksi extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['produk'] = $this->m_laporan->getProduk();
+        $data['dataTotal'] ='';
         $data['laporan'] = $this->m_laporan->getLaporan();
         $this->load->view('header', $data);
         $this->load->view('sidebar', $data);
@@ -91,6 +92,45 @@ class Transaksi extends CI_Controller
         $this->m_laporan->editLaporan($data, $id);
         $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil diubah!</div>');
         redirect('transaksi');
+    }
+
+    // total item
+    public function totalItem($id)
+    {
+        $getData = $this->m_laporan->getLaporan($id);
+        $harga = $getData[0]['harga'];
+        $jumlah = $getData[0]['jumlah'];
+        $total = $harga * $jumlah;
+        $data = [
+            'id_produk' => $getData[0]['id_produk'],
+            'jumlah' => $getData[0]['jumlah'],
+            'total' => $total,
+            'date_created' => $getData[0]['date_created'],
+            'date_modify' => $getData[0]['date_modify'],
+        ];
+
+        $this->m_laporan->editLaporan($data, $id);
+        
+        $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil ditotal!</div>');
+        redirect('transaksi');
+    }
+
+    // total
+    public function total()
+    {
+        $getLaporan = $this->m_laporan->getLaporan();
+        foreach($getLaporan as $row):
+            $total[] = $row['total'];
+            $dataTotal = array_sum($total);
+        endforeach;
+        $data['title'] = 'Dashboard';
+        $data['produk'] = $this->m_laporan->getProduk();
+        $data['laporan'] = $this->m_laporan->getLaporan();
+        $data['dataTotal'] = $dataTotal;
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_transaksi', $data);
+        $this->load->view('footer');
     }
 
 }

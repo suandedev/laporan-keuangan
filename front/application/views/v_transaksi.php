@@ -44,6 +44,20 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-4 mb-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Total Transakasi</h6>
+                </div>
+                <div class="card-body">
+                    <a href="<?= base_url('transaksi/total'); ?>" class="btn btn-sm btn-primary btn-block">total</a>
+                    <p class="bold mb-3 mt-4 text-center">Rp. <?= $dataTotal; ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- DataTales laporan -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -58,6 +72,7 @@
                             <th>produk</th>
                             <th>harga</th>
                             <th>jumlah</th>
+                            <th>total</th>
                             <th>tanggal dibuat</th>
                             <th>tanggal diubah</th>
                             <th>aksi </th>
@@ -69,6 +84,7 @@
                             <th>produk</th>
                             <th>harga</th>
                             <th>jumlah</th>
+                            <th>total</th>
                             <th>tanggal dibuat</th>
                             <th>tanggal diubah</th>
                             <th>aksi </th>
@@ -80,13 +96,15 @@
                             <tr>
                                 <td><?= $no++; ?></td>
                                 <td><?= $row['nama']; ?></td>
-                                <td><?= $row['harga']; ?></td>
+                                <td>Rp. <?= $row['harga']; ?></td>
                                 <td><?= $row['jumlah']; ?></td>
+                                <td>Rp. <?= $row['total']; ?></td>
                                 <td><?= date('Y-m-d', $row['date_created']); ?></td>
                                 <td><?= date('Y-m-d', $row['date_modify']); ?></td>
                                 <td class="text-center">
+                                    <a href="<?= base_url('transaksi/totalItem/' . $row['id']); ?>" class="btn btn-sm btn-outline-success"><i class="fa fa-calculator"> total</i></a>
                                     <a href="<?= base_url('transaksi/detail/' . $row['id']); ?>" class="btn btn-sm btn-outline-primary"><i class="fa fa-eye"> detail</i></a>
-                                    <a href="<?= base_url('transaksi/edit/' . $row['id']); ?>" class="btn btn-sm btn-outline-success"><i class='fa fa-edit'></i> edit</a>
+                                    <a href="<?= base_url('transaksi/edit/' . $row['id']); ?>" class="btn btn-sm btn-outline-warning"><i class='fa fa-edit'></i> edit</a>
                                     <a href="<?= base_url('transaksi/hapus/' . $row['id']); ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('yakin?')"><i class='fa fa-trash'></i> hapus</a>
 
                                 </td>
