@@ -33,6 +33,15 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <!-- Nav Item - Produk -->
+            <li class="nav-item active">
+                <a class="nav-link" href="<?= base_url('cetaklaporan'); ?>">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Laporan</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

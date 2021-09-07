@@ -3,6 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class CetakLaporan extends CI_Controller
 {
+    
+    // get cetak
+    public function index()
+    {
+        $data['title'] = 'Laporan';
+        $data['produk'] = $this->m_laporan->getProduk();
+        $data['cetak'] = $this->m_laporan->getCetak();
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_cetak', $data);
+        $this->load->view('footer');
+    }
+
     // cetak laporan
     public function cetak()
     {
@@ -30,4 +43,5 @@ class CetakLaporan extends CI_Controller
         }
         redirect('transaksi');
     }
+
 }
