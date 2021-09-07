@@ -21,7 +21,7 @@ class M_laporan extends CI_Model {
         parent::__construct();
         
         // select
-        $this->Sproduk = "$this->laporan.id, $this->produk.nama, $this->produk.harga, $this->produk.gambar, $this->laporan.jumlah, $this->laporan.date_created, $this->laporan.date_modify,";
+        $this->Sproduk = "$this->laporan.id, $this->laporan.id_produk, $this->produk.nama, $this->produk.harga, $this->produk.gambar, $this->laporan.jumlah, $this->laporan.date_created, $this->laporan.date_modify,";
 
         //join
         $this->Jproduk = "$this->produk.id = $this->laporan.id_produk";
@@ -55,6 +55,14 @@ class M_laporan extends CI_Model {
     {
         
         $this->db->delete($this->laporan, ['id' => $id]);
+        
+    }
+
+    // edit laporan
+    public function editLaporan($data, $id)
+    {
+        
+        $this->db->update($this->laporan, $data, ['id' => $id]);
         
     }
 
