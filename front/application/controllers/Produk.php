@@ -72,6 +72,7 @@ class Produk extends CI_Controller
         }
     }
 
+    // private upload gambar
     private function _gambar()
     {
         $config['upload_path']          = './assets/upload/';
@@ -142,8 +143,38 @@ class Produk extends CI_Controller
     // aksi edit
     public function aksiEdit($id)
     {
-        $this->m_laporan->editProduk($id);
-        $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-        redirect('produk');
+        if ($_FILES['gambar']['name'] == "") {
+            $getProduk = $this->m_laporan->getProduk($id);
+            $data = [
+                'nama' => htmlspecialchars($this->input->POST('nama')),
+                'harga' => htmlspecialchars($this->input->POST('harga')),
+                'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
+                'gambar' => $getProduk[0]['gambar'],
+                'date_created' => $getProduk[0]['date_created'],
+                'date_modify' => time()
+            ];
+
+            $this->m_laporan->editProduk($id, $data);
+            $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+            redirect('produk');
+        } else {
+            $this->_gambar();
+
+            $getProduk = $this->m_laporan->getProduk($id);
+            $this->_hapus($id);
+            $data = [
+                'nama' => htmlspecialchars($this->input->POST('nama')),
+                'harga' => htmlspecialchars($this->input->POST('harga')),
+                'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
+                'gambar' => $this->upload->data('file_name'),
+                'date_created' => $getProduk[0]['date_created'],
+                'date_modify' => time()
+            ];
+
+            $this->m_laporan->editProduk($id, $data);
+            $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+            redirect('produk');
+
+        }
     }
 }

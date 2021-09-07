@@ -56,18 +56,8 @@ class M_laporan extends CI_Model {
     }
 
     // edit produk
-    public function editProduk($id)
+    public function editProduk($id, $data)
     {
-        $getProduk = $this->getProduk($id);
-        $data = [
-            'nama' => htmlspecialchars($this->input->POST('nama')),
-            'harga' => htmlspecialchars($this->input->POST('harga')),
-            'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
-            'gambar' => '',
-            'date_created' => $getProduk[0]['date_created'],
-            'date_modify' => time()
-        ];
-
         $this->db->update($this->produk, $data, ['id' => $id]);
     }
 

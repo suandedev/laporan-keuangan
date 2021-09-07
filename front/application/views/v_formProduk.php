@@ -27,7 +27,7 @@
                                 <div class="card mb-3" style="max-width: 200px;">
                                     <div class="row">
                                         <div class="col">
-                                            <img src="<?= base_url('assets/upload/user.png'); ?>" class="img-fluid rounded-start justify-content-center" alt="...">
+                                            <img src="<?= base_url('assets/upload/'. $produk[0]['gambar']); ?>" class="img-fluid rounded-start justify-content-center" alt="...">
                                         </div>
                                     </div>
                                 </div>
