@@ -50,6 +50,14 @@ class M_laporan extends CI_Model {
         
     }
 
+    // hapus laporan
+    public function hapusLaporan($id)
+    {
+        
+        $this->db->delete($this->laporan, ['id' => $id]);
+        
+    }
+
     // get produk
     public function getProduk($id = null) 
     {
