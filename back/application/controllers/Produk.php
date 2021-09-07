@@ -14,6 +14,7 @@ class Produk extends RestController {
         
     }
 
+    // get
     public function index_get()
     {
         $id = $this->get('id');
@@ -37,6 +38,7 @@ class Produk extends RestController {
 		}
     }
 
+    // delete
     public function index_delete()
     {
         $id = $this->delete('id');
@@ -60,6 +62,35 @@ class Produk extends RestController {
 					'message' => 'id not found'
 				], 404 );
 			}
+		}
+    }
+
+    // add
+    public function index_post()
+    {
+        $data = [
+            'nama' => $this->post('nama'),
+            'harga_jual' => $this->post('harga_jual'),
+            'harga_modal' => $this->post('harga_modal'),
+            'deskripsi' => $this->post('deskripsi'),
+            'gambar' => $this->post('gambar'),
+            'date_created' => time(),
+            'date_modify' => time(),
+        ];
+
+        if ($this->api->createProduk($data) > 0) {
+			//ok
+			$this->response( [
+				'status' => true,
+				'result' => $data,
+				'message' => 'new produk has been created'
+			], 200 );
+		} else {
+			//id not found
+			$this->response( [
+				'status' => false,
+				'message' => 'faild to create new data'
+			], 404 );
 		}
     }
 }

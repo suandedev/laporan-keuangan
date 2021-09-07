@@ -16,12 +16,14 @@ class M_api extends CI_Model {
     // delete produk
     public function deteleProduk($id)
     {
-        
         $this->db->delete($this->produk, ['id' => $id]);
-
-        
         return $this->db->affected_rows();
-        
-        
+    }
+
+    // create produk
+    public function createProduk($data)
+    {
+        $this->db->insert($this->produk, $data);
+        return $this->db->affected_rows();
     }
 }
