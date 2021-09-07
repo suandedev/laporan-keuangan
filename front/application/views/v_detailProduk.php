@@ -17,28 +17,4 @@
         </div>
     </div>
 
-    <!-- <div class="row justify-content-center">
-        <div class="col-lg-4">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Detail <?= $title; ?></h6>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item bold">Nama</li>
-                        <li class="list-group-item"><?= $produk[0]['nama']; ?></li>
-                    </ul>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item bold">harga</li>
-                        <li class="list-group-item"><?= $produk[0]['harga']; ?></li>
-                    </ul>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item bold">deskripsi</li>
-                        <li class="list-group-item"><?= $produk[0]['deskripsi']; ?></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
 </div>

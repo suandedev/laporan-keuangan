@@ -47,4 +47,15 @@ class Transaksi extends CI_Controller
         $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         redirect('transaksi');
     }
+
+    // detail
+    public function detail($id)
+    {
+        $data['title'] = 'Detail';
+        $data['transaksi'] = $this->m_laporan->getLaporan($id);
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_detailTransaksi', $data);
+        $this->load->view('footer');
+    }
 }
