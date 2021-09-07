@@ -55,25 +55,7 @@ class Produk extends CI_Controller
             $this->load->view('footer');
         } else {
 
-            $config['upload_path']          = './assets/upload/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 2048;
-    
-            $this->load->library('upload', $config);
-
-            $this->upload->initialize($config);
-    
-            if (!$this->upload->do_upload('gambar')) {
-                $data = [
-                    'error' => $this->upload->display_errors()
-                ];
-                $this->load->view('v_formProduk', $data);
-            } else {
-                $data = [
-                    'upload_data' => $this->upload->data()
-                ];
-                $this->load->view('v_formProduk', $data);
-            }
+            $this->_gambar();
 
             $data = [
                 'nama' => htmlspecialchars($this->input->POST('nama')),
@@ -90,12 +72,48 @@ class Produk extends CI_Controller
         }
     }
 
+    private function _gambar()
+    {
+        $config['upload_path']          = './assets/upload/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 2048;
+
+        $this->load->library('upload', $config);
+
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('gambar')) {
+            $data = [
+                'error' => $this->upload->display_errors()
+            ];
+            $this->load->view('v_formProduk', $data);
+        } else {
+            $data = [
+                'upload_data' => $this->upload->data()
+            ];
+            $this->load->view('v_formProduk', $data);
+        }
+    }
+
     // hapus produk
     public function hapus($id)
     {
+        $this->_hapus($id);
+
         $this->m_laporan->hapusProduk($id);
         $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         redirect('produk');
+    }
+
+    // private hapus
+    private function _hapus($id)
+    {
+        //ambil data gambar di tabel
+        $data = $this->m_laporan->getProduk($id);
+
+        //unlink 
+        $path = 'assets/upload/' . $data[0]['gambar'];
+        unlink($path);
     }
 
     // detail produk
