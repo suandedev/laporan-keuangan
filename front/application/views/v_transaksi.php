@@ -12,17 +12,19 @@
                 </div>
                 <div class="card-body">
 
-                    <form method="POST" action="<?= base_url('laporan/addLaporan'); ?>" class="user">
+                    <form method="POST" action="<?= base_url('transaksi/add'); ?>" class="user">
                         <div class="form-group">
-                            <input type="text" name="produk" class="form-control form-control-user" id="produk" placeholder="masukan produk...">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="harga" class="form-control form-control-user" id="harga" placeholder="masukan harga...">
+                            <select name="id_produk" class="form-select" aria-label="Default select example">
+                                <option value="" selected>--pilih produk--</option>
+                                <?php foreach ($produk as $row) : ?>
+                                    <option value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="text" name="jumlah" class="form-control form-control-user" id="jumlah" placeholder="masukan jumlah...">
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             simpan
                         </button>
@@ -32,8 +34,17 @@
 
         </div>
     </div>
+
+    <!-- session flash data -->
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $this->session->flashdata('pesan1');; ?>
+            </div>
+        </div>
+    </div>
     
-    <!-- DataTales Example -->
+    <!-- DataTales laporan -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Transakasi</h6>
@@ -41,7 +52,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
                             <th>no</th>
                             <th>produk</th>
@@ -52,7 +63,7 @@
                             <th>aksi </th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot class="text-center">
                         <tr>
                             <th>no</th>
                             <th>produk</th>

@@ -12,6 +12,7 @@ class M_laporan extends CI_Model {
     //select 
     protected $Sproduk;
     
+    // construct
     public function __construct()
     {
         parent::__construct();
@@ -32,6 +33,13 @@ class M_laporan extends CI_Model {
         $this->db->select($this->Sproduk);
         $this->db->join($this->produk, $this->Jproduk);
         return $this->db->get($this->laporan)->result_array();
+    }
+
+    // add laporan
+    public function addLaporan($data)
+    {
+        $this->db->insert($this->laporan, $data);
+        
     }
 
     // get produk
