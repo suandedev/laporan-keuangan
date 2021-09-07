@@ -22,7 +22,7 @@ class M_laporan extends CI_Model {
         parent::__construct();
         
         // select
-        $this->Sproduk = "$this->laporan.id, $this->laporan.id_produk, $this->produk.nama, $this->produk.harga, $this->produk.gambar, $this->laporan.jumlah, $this->laporan.total, $this->laporan.date_created, $this->laporan.date_modify,";
+        $this->Sproduk = "$this->laporan.id, $this->laporan.id_produk, $this->produk.nama, $this->produk.harga_jual, $this->produk.harga_modal, $this->produk.gambar, $this->laporan.jumlah, $this->laporan.total_jual, $this->laporan.total_modal, $this->laporan.laba, $this->laporan.date_created, $this->laporan.date_modify,";
 
         //join
         $this->Jproduk = "$this->produk.id = $this->laporan.id_produk";

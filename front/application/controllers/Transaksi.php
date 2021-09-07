@@ -20,7 +20,9 @@ class Transaksi extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['produk'] = $this->m_laporan->getProduk();
-        $data['dataTotal'] ='';
+        $data['dataTotalLaba'] ='';
+        $data['dataTotalModal'] ='';
+        $data['dataTotalJual'] ='';
         $data['laporan'] = $this->m_laporan->getLaporan();
         $this->load->view('header', $data);
         $this->load->view('sidebar', $data);
@@ -98,15 +100,16 @@ class Transaksi extends CI_Controller
     public function totalItem($id)
     {
         $getData = $this->m_laporan->getLaporan($id);
-        $harga = $getData[0]['harga'];
+        $harga_jual = $getData[0]['harga_jual'];
+        $harga_modal = $getData[0]['harga_modal'];
         $jumlah = $getData[0]['jumlah'];
-        $total = $harga * $jumlah;
+        $total_jual = $harga_jual * $jumlah;
+        $total_modal = $harga_modal * $jumlah;
+        $laba = $total_jual - $total_modal;
         $data = [
-            'id_produk' => $getData[0]['id_produk'],
-            'jumlah' => $getData[0]['jumlah'],
-            'total' => $total,
-            'date_created' => $getData[0]['date_created'],
-            'date_modify' => $getData[0]['date_modify'],
+            'total_jual' => $total_jual,
+            'total_modal' => $total_modal,
+            'laba' => $laba,
         ];
 
         $this->m_laporan->editLaporan($data, $id);
@@ -115,18 +118,60 @@ class Transaksi extends CI_Controller
         redirect('transaksi');
     }
 
-    // total
-    public function total()
+    // total laba
+    public function totalLaba()
     {
         $getLaporan = $this->m_laporan->getLaporan();
         foreach($getLaporan as $row):
-            $total[] = $row['total'];
-            $dataTotal = array_sum($total);
+            $laba[] = $row['laba'];
+            $dataTotalLaba = array_sum($laba);
         endforeach;
         $data['title'] = 'Dashboard';
         $data['produk'] = $this->m_laporan->getProduk();
         $data['laporan'] = $this->m_laporan->getLaporan();
-        $data['dataTotal'] = $dataTotal;
+        $data['dataTotalLaba'] = $dataTotalLaba;
+        $data['dataTotalModal'] = '';
+        $data['dataTotalJual'] = '';
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_transaksi', $data);
+        $this->load->view('footer');
+    }
+
+    // total modal 
+    public function totalModal()
+    {
+        $getLaporan = $this->m_laporan->getLaporan();
+        foreach($getLaporan as $row):
+            $modal[] = $row['total_modal'];
+            $dataTotalModal = array_sum($modal);
+        endforeach;
+        $data['title'] = 'Dashboard';
+        $data['produk'] = $this->m_laporan->getProduk();
+        $data['laporan'] = $this->m_laporan->getLaporan();
+        $data['dataTotalModal'] = $dataTotalModal;
+        $data['dataTotalLaba'] = '';
+        $data['dataTotalJual'] = '';
+        $this->load->view('header', $data);
+        $this->load->view('sidebar', $data);
+        $this->load->view('v_transaksi', $data);
+        $this->load->view('footer');
+    }
+
+    // total jual
+    public function totalJual()
+    {
+        $getLaporan = $this->m_laporan->getLaporan();
+        foreach($getLaporan as $row):
+            $jual[] = $row['total_jual'];
+            $dataTotalJual = array_sum($jual);
+        endforeach;
+        $data['title'] = 'Dashboard';
+        $data['produk'] = $this->m_laporan->getProduk();
+        $data['laporan'] = $this->m_laporan->getLaporan();
+        $data['dataTotalJual'] = $dataTotalJual;    
+        $data['dataTotalLaba'] = '';
+        $data['dataTotalModal'] = '';
         $this->load->view('header', $data);
         $this->load->view('sidebar', $data);
         $this->load->view('v_transaksi', $data);

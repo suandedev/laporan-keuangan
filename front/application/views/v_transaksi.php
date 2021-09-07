@@ -45,14 +45,36 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4 mb-3">
+        <div class="col-md-4 mb-3">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Total Transakasi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Total Laba</h6>
                 </div>
                 <div class="card-body">
-                    <a href="<?= base_url('transaksi/total'); ?>" class="btn btn-sm btn-primary btn-block">total</a>
-                    <p class="bold mb-3 mt-4 text-center">Rp. <?= $dataTotal; ?></p>
+                    <a href="<?= base_url('transaksi/totalLaba'); ?>" class="btn btn-sm btn-primary btn-block">total</a>
+                    <p class="bold mb-3 mt-4 text-center">Rp. <?= $dataTotalLaba; ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Total modal</h6>
+                </div>
+                <div class="card-body">
+                    <a href="<?= base_url('transaksi/totalModal'); ?>" class="btn btn-sm btn-primary btn-block">total</a>
+                    <p class="bold mb-3 mt-4 text-center">Rp. <?= $dataTotalModal; ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Total jual</h6>
+                </div>
+                <div class="card-body">
+                    <a href="<?= base_url('transaksi/totalJual'); ?>" class="btn btn-sm btn-primary btn-block">total</a>
+                    <p class="bold mb-3 mt-4 text-center">Rp. <?= $dataTotalJual; ?></p>
                 </div>
             </div>
         </div>
@@ -70,9 +92,12 @@
                         <tr>
                             <th>no</th>
                             <th>produk</th>
-                            <th>harga</th>
+                            <th>harga jual</th>
+                            <th>harga modal</th>
                             <th>jumlah</th>
-                            <th>total</th>
+                            <th>total jual</th>
+                            <th>total modal</th>
+                            <th>laba</th>
                             <th>tanggal dibuat</th>
                             <th>tanggal diubah</th>
                             <th>aksi </th>
@@ -82,9 +107,12 @@
                         <tr>
                             <th>no</th>
                             <th>produk</th>
-                            <th>harga</th>
+                            <th>harga jual</th>
+                            <th>harga modal</th>
                             <th>jumlah</th>
-                            <th>total</th>
+                            <th>total jual</th>
+                            <th>total modal</th>
+                            <th>laba</th>
                             <th>tanggal dibuat</th>
                             <th>tanggal diubah</th>
                             <th>aksi </th>
@@ -96,9 +124,12 @@
                             <tr>
                                 <td><?= $no++; ?></td>
                                 <td><?= $row['nama']; ?></td>
-                                <td>Rp. <?= $row['harga']; ?></td>
+                                <td>Rp. <?= $row['harga_jual']; ?></td>
+                                <td>Rp. <?= $row['harga_modal']; ?></td>
                                 <td><?= $row['jumlah']; ?></td>
-                                <td>Rp. <?= $row['total']; ?></td>
+                                <td>Rp. <?= $row['total_jual']; ?></td>
+                                <td>Rp. <?= $row['total_modal']; ?></td>
+                                <td>Rp. <?= $row['laba']; ?></td>
                                 <td><?= date('Y-m-d', $row['date_created']); ?></td>
                                 <td><?= date('Y-m-d', $row['date_modify']); ?></td>
                                 <td class="text-center">
