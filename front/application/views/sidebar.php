@@ -27,7 +27,7 @@
             <!-- Nav Item - Produk -->
             <li class="nav-item active">
                 <a class="nav-link" href="<?= base_url('produk'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-list"></i>
                     <span>Produk</span></a>
             </li>
 
@@ -36,7 +36,7 @@
             <!-- Nav Item - Produk -->
             <li class="nav-item active">
                 <a class="nav-link" href="<?= base_url('cetaklaporan'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-book"></i>
                     <span>Laporan</span></a>
             </li>
 
