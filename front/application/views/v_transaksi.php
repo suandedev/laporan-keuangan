@@ -44,6 +44,7 @@
         </div>
     </div>
 
+    <!-- tombol cetak total laba, modal, jual -->
     <div class="row">
         <div class="col-md-4 mb-3">
             <div class="card shadow mb-4">
@@ -84,6 +85,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Transakasi</h6>
+            <a href="<?= base_url('cetaklaporan/cetak'); ?>" class="btn btn-primary float-right"><i class="fa fa-plus"></i> cetak</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

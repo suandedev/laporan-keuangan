@@ -5,6 +5,7 @@ class M_laporan extends CI_Model {
 
     protected $laporan = 'laporan';
     protected $produk = 'produk';
+    protected $cetak_laporan = 'cetak_laporan';
     
     // join 
     protected $Jproduk;
@@ -96,6 +97,14 @@ class M_laporan extends CI_Model {
     public function editProduk($id, $data)
     {
         $this->db->update($this->produk, $data, ['id' => $id]);
+    }
+
+    // cetak laporan 
+    public function cetakLaporan($data)
+    {
+        
+        $this->db->insert($this->cetak_laporan, $data);
+        
     }
 
 }

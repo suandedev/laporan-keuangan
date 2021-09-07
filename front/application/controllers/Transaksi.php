@@ -10,9 +10,8 @@ class Transaksi extends CI_Controller
         parent::__construct();
 
         $this->load->library('session');
-        
+
         $this->load->library('form_validation');
-        
     }
 
 
@@ -20,9 +19,9 @@ class Transaksi extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['produk'] = $this->m_laporan->getProduk();
-        $data['dataTotalLaba'] ='';
-        $data['dataTotalModal'] ='';
-        $data['dataTotalJual'] ='';
+        $data['dataTotalLaba'] = '';
+        $data['dataTotalModal'] = '';
+        $data['dataTotalJual'] = '';
         $data['laporan'] = $this->m_laporan->getLaporan();
         $this->load->view('header', $data);
         $this->load->view('sidebar', $data);
@@ -113,7 +112,7 @@ class Transaksi extends CI_Controller
         ];
 
         $this->m_laporan->editLaporan($data, $id);
-        
+
         $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil ditotal!</div>');
         redirect('transaksi');
     }
@@ -122,7 +121,7 @@ class Transaksi extends CI_Controller
     public function totalLaba()
     {
         $getLaporan = $this->m_laporan->getLaporan();
-        foreach($getLaporan as $row):
+        foreach ($getLaporan as $row) :
             $laba[] = $row['laba'];
             $dataTotalLaba = array_sum($laba);
         endforeach;
@@ -142,7 +141,7 @@ class Transaksi extends CI_Controller
     public function totalModal()
     {
         $getLaporan = $this->m_laporan->getLaporan();
-        foreach($getLaporan as $row):
+        foreach ($getLaporan as $row) :
             $modal[] = $row['total_modal'];
             $dataTotalModal = array_sum($modal);
         endforeach;
@@ -162,14 +161,14 @@ class Transaksi extends CI_Controller
     public function totalJual()
     {
         $getLaporan = $this->m_laporan->getLaporan();
-        foreach($getLaporan as $row):
+        foreach ($getLaporan as $row) :
             $jual[] = $row['total_jual'];
             $dataTotalJual = array_sum($jual);
         endforeach;
         $data['title'] = 'Dashboard';
         $data['produk'] = $this->m_laporan->getProduk();
         $data['laporan'] = $this->m_laporan->getLaporan();
-        $data['dataTotalJual'] = $dataTotalJual;    
+        $data['dataTotalJual'] = $dataTotalJual;
         $data['dataTotalLaba'] = '';
         $data['dataTotalModal'] = '';
         $this->load->view('header', $data);
@@ -177,5 +176,4 @@ class Transaksi extends CI_Controller
         $this->load->view('v_transaksi', $data);
         $this->load->view('footer');
     }
-
 }
