@@ -45,7 +45,7 @@
                             <tr>
                                 <td><?= $no++; ?></td>
                                 <td><?= $row['nama']; ?></td>
-                                <td><?= $row['harga']; ?></td>
+                                <td><?= $row['harga_jual']; ?></td>
                                 <td><?= $row['deskripsi']; ?></td>
                                 <td><?= date('Y-m-d', $row['date_created']); ?></td>
                                 <td><?= date('Y-m-d', $row['date_modify']); ?></td>

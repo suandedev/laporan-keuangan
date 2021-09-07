@@ -14,6 +14,7 @@ class M_laporan extends CI_Model {
 
     // order by
     protected $Blaporan;
+    protected $Bproduk;
     
     // construct
     public function __construct()
@@ -28,6 +29,7 @@ class M_laporan extends CI_Model {
 
         // ordey by
         $this->Blaporan = "$this->laporan.id";
+        $this->Bproduk = "$this->produk.id";
     }
     
     // get laporan
@@ -72,6 +74,9 @@ class M_laporan extends CI_Model {
         if($id != null) {
             $this->db->where(['id' => $id]);
         }
+        
+        $this->db->order_by($this->Bproduk, 'desc');
+        
         return $this->db->get($this->produk)->result_array();
     }
 

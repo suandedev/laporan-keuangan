@@ -11,7 +11,8 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $produk[0]['nama']; ?></h5>
                     <p class="card-text"><?= $produk[0]['deskripsi']; ?></p>
-                    <p class="card-text"><small class="text-muted">Rp. <?= $produk[0]['harga']; ?></small></p>
+                    <p class="card-text"><small class="text-muted">harga jual : Rp. <?= $produk[0]['harga_jual']; ?></small></p>
+                    <p class="card-text"><small class="text-muted">harga modal : Rp. <?= $produk[0]['harga_modal']; ?></small></p>
                 </div>
             </div>
         </div>

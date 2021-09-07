@@ -11,6 +11,7 @@ class Produk extends CI_Controller
         $this->load->library('session');
         $this->load->library('upload');
         $this->load->helper(array('form'));
+
     }
 
     public function index()
@@ -27,8 +28,16 @@ class Produk extends CI_Controller
     public function addProduk()
     {
         $this->form_validation->set_rules(
-            'harga',
-            'Harga',
+            'harga_jual',
+            'Harga jual',
+            'trim|required',
+            [
+                'required' => 'harga tidak boleh kosong',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'harga_modal',
+            'Harga modal',
             'trim|required',
             [
                 'required' => 'harga tidak boleh kosong',
@@ -59,7 +68,8 @@ class Produk extends CI_Controller
 
             $data = [
                 'nama' => htmlspecialchars($this->input->POST('nama')),
-                'harga' => htmlspecialchars($this->input->POST('harga')),
+                'harga_jual' => htmlspecialchars($this->input->POST('harga_jual')),
+                'harga_modal' => htmlspecialchars($this->input->POST('harga_modal')),
                 'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
                 'gambar' => $this->upload->data('file_name'),
                 'date_created' => time(),
@@ -147,7 +157,8 @@ class Produk extends CI_Controller
             $getProduk = $this->m_laporan->getProduk($id);
             $data = [
                 'nama' => htmlspecialchars($this->input->POST('nama')),
-                'harga' => htmlspecialchars($this->input->POST('harga')),
+                'harga_jual' => htmlspecialchars($this->input->POST('harga_jual')),
+                'harga_modal' => htmlspecialchars($this->input->POST('harga_modal')),
                 'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
                 'gambar' => $getProduk[0]['gambar'],
                 'date_created' => $getProduk[0]['date_created'],
