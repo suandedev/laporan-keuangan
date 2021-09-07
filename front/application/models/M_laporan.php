@@ -11,6 +11,9 @@ class M_laporan extends CI_Model {
     
     //select 
     protected $Sproduk;
+
+    // order by
+    protected $Blaporan;
     
     // construct
     public function __construct()
@@ -22,6 +25,9 @@ class M_laporan extends CI_Model {
 
         //join
         $this->Jproduk = "$this->produk.id = $this->laporan.id_produk";
+
+        // ordey by
+        $this->Blaporan = "$this->laporan.id";
     }
     
     // get laporan
@@ -32,12 +38,14 @@ class M_laporan extends CI_Model {
         }
         $this->db->select($this->Sproduk);
         $this->db->join($this->produk, $this->Jproduk);
+        $this->db->order_by($this->Blaporan, 'DESC');
         return $this->db->get($this->laporan)->result_array();
     }
 
     // add laporan
     public function addLaporan($data)
     {
+        
         $this->db->insert($this->laporan, $data);
         
     }
