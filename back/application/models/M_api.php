@@ -55,4 +55,13 @@ class M_api extends CI_Model
         
         
     }
+
+    // insert transaksi
+    public function createTransaksi($data)
+    {
+        
+        $this->db->insert($this->laporan, $data);
+        return $this->db->affected_rows();
+        
+    }
 }
