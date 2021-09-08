@@ -36,7 +36,12 @@ class M_laporan extends CI_Model
     public function addLaporan($data)
     {
 
-//        $this->db->insert($this->laporan, $data);
+		$response = $this->_client->request('POST', 'transaksi', [
+			'form_params' => $data
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // hapus laporan
@@ -56,13 +61,15 @@ class M_laporan extends CI_Model
     // get produk
     public function getProduk($id = null)
     {
-//        if ($id != null) {
-//            $this->db->where(['id' => $id]);
-//        }
-//
-////        $this->db->order_by($this->Bproduk, 'desc');
-//
-//        return $this->db->get($this->produk)->result_array();
+		$response = $this->_client->request('GET', 'produk', [
+//			'query' => [
+////				'X-API-KEY' => 'made123'
+//			]
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+
+		return $result['result'];
     }
 
     // add produk

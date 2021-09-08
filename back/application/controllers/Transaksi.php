@@ -71,9 +71,6 @@ class Transaksi extends RestController {
         $data = [
             'id_produk' => $this->post('id_produk'),
             'jumlah' => $this->post('jumlah'),
-            'total_jual' => $this->post('total_jual'),
-            'total_modal' => $this->post('total_modal'),
-            'laba' => $this->post('laba'),
             'date_created' => time(),
             'date_modify' => time(),
         ];
