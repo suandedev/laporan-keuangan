@@ -87,10 +87,11 @@ class Transaksi extends CI_Controller
             'id_produk' => htmlspecialchars($this->input->post('id_produk')),
             'jumlah' => htmlspecialchars($this->input->post('jumlah')),
             'date_created' => $getLaporan[0]['date_created'],
-            'date_modify' => time()
+            'date_modify' => time(),
+			'id' => $id
         ];
 
-        $this->m_laporan->editLaporan($data, $id);
+        $this->m_laporan->editLaporan($data);
         $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil diubah!</div>');
         redirect('transaksi');
     }
@@ -109,6 +110,7 @@ class Transaksi extends CI_Controller
             'total_jual' => $total_jual,
             'total_modal' => $total_modal,
             'laba' => $laba,
+			'id' => $id
         ];
 
         $this->m_laporan->editLaporan($data, $id);

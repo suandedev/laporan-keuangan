@@ -26,14 +26,14 @@ class M_laporan extends CI_Model
 					'id' => $id
 				]
 			]);
+		} else {
+			$response = $this->_client->request('GET', 'transaksi');
 		}
-		$response = $this->_client->request('GET', 'transaksi');
 
 		$result = json_decode($response->getBody()->getContents(), true);
 
 		return $result['result'];
     }
-
 
     // add laporan
     public function addLaporan($data)
@@ -61,20 +61,28 @@ class M_laporan extends CI_Model
     }
 
     // edit laporan
-    public function editLaporan($data, $id)
+    public function editLaporan($data)
     {
+		$response = $this->_client->request('PUT', 'transaksi', [
+			'form_params' => $data
+		]);
 
-//        $this->db->update($this->laporan, $data, ['id' => $id]);
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // get produk
     public function getProduk($id = null)
     {
-		$response = $this->_client->request('GET', 'produk', [
-//			'query' => [
-////				'X-API-KEY' => 'made123'
-//			]
-		]);
+    	if ($id != null) {
+			$response = $this->_client->request('GET', 'produk', [
+				'query' => [
+					'id' => $id
+				]
+			]);
+		} else {
+			$response = $this->_client->request('GET', 'produk');
+		}
 
 		$result = json_decode($response->getBody()->getContents(), true);
 

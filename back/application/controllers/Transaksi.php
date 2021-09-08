@@ -97,13 +97,9 @@ class Transaksi extends RestController {
         $id = $this->put('id');
 
         $data = [
-            'id_produk' => $this->put('id_produk'),
-            'jumlah' => $this->put('jumlah'),
             'total_jual' => $this->put('total_jual'),
             'total_modal' => $this->put('total_modal'),
-            'laba' => $this->put('laba'),
-            'date_created' => $this->put('date_created'),
-            'date_modify' => time(),
+            'laba' => $this->put('laba')
         ];
 
         if ($this->api->updateTransaksi($data, $id) > 0) {
