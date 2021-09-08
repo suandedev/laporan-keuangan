@@ -47,8 +47,14 @@ class M_laporan extends CI_Model
     // hapus laporan
     public function hapusLaporan($id)
     {
+		$response = $this->_client->request('DELETE','transaksi', [
+			'form_params' => [
+				'id' => $id,
+			]
+		]);
 
-//        $this->db->delete($this->laporan, ['id' => $id]);
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // edit laporan
