@@ -92,13 +92,25 @@ class M_laporan extends CI_Model
     // add produk
     public function addProduk($data)
     {
-//        $this->db->insert($this->produk, $data);
+		$response = $this->_client->request('POST', 'produk', [
+			'form_params' => $data
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // hapus produk
     public function hapusProduk($id)
     {
-//        $this->db->delete($this->produk, ['id' => $id]);
+		$response = $this->_client->request('DELETE','produk', [
+			'form_params' => [
+				'id' => $id,
+			]
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // edit produk
