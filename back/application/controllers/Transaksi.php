@@ -37,4 +37,31 @@ class Transaksi extends RestController {
 			], 404 );
 		}
     }
+
+    // delete
+    public function index_delete()
+    {
+        $id = $this->delete('id');
+        if ($id === null) {
+			$this->response( [
+				'status' => false,
+				'result' => "error",
+				'message' => 'provide an id'
+			], 404 );
+		} else {
+			if ($this->api->deteleTransaksi($id) > 0) {
+				//ok
+				$this->response( [
+					'status' => true,
+					'message' => 'deletes'
+				], 200 );
+			} else {
+				//id not found
+				$this->response( [
+					'status' => false,
+					'message' => 'id not found'
+				], 404 );
+			}
+		}
+    }
 }

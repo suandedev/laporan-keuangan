@@ -44,4 +44,15 @@ class M_api extends CI_Model
         }
         return $this->db->get($this->laporan)->result_array();
     }
+
+    // delete transaksi
+    public function deteleTransaksi($id)
+    {
+        
+        $this->db->delete($this->laporan, ['id' => $id]);
+        
+        return $this->db->affected_rows();
+        
+        
+    }
 }
