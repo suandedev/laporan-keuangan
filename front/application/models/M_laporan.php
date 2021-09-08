@@ -20,11 +20,14 @@ class M_laporan extends CI_Model
     // get laporan
     public function getLaporan($id = null)
     {
-		$response = $this->_client->request('GET', 'transaksi', [
-//			'query' => [
-////				'X-API-KEY' => 'made123'
-//			]
-		]);
+		if ($id != null) {
+			$response = $this->_client->request('GET', 'transaksi', [
+				'query' => [
+					'id' => $id
+				]
+			]);
+		}
+		$response = $this->_client->request('GET', 'transaksi');
 
 		$result = json_decode($response->getBody()->getContents(), true);
 

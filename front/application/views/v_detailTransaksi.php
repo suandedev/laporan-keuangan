@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $transaksi[0]['nama']; ?></h5>
                     <p class="card-text">jumlah pembelian : <?= $transaksi[0]['jumlah']; ?></p>
-                    <p class="card-text"><small class="text-muted">Harga : Rp. <?= $transaksi[0]['harga']; ?></small></p>
+                    <p class="card-text"><small class="text-muted">Harga : Rp. <?= $transaksi[0]['harga_jual']; ?></small></p>
                     <p class="card-text"><small class="text-muted">tanggal transaksi : <?= date('d-m-Y', $transaksi[0]['date_created']); ?></small></p>
                 </div>
             </div>
