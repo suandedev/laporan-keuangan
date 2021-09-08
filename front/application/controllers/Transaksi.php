@@ -22,7 +22,7 @@ class Transaksi extends CI_Controller
         $data['dataTotalLaba'] = '';
         $data['dataTotalModal'] = '';
         $data['dataTotalJual'] = '';
-        $data['laporan'] = $this->m_laporan->getLaporan();
+		$data['laporan'] = $this->m_laporan->getLaporan();
         $this->load->view('header', $data);
         $this->load->view('sidebar', $data);
         $this->load->view('v_transaksi', $data);

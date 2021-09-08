@@ -24,6 +24,21 @@ class Transaksi extends RestController {
 			$transaksi = $this->api->getTransaksi();
 		}
 
+		$transaksi_kosong = [
+			[
+				'id' => '',
+				'nama' => '',
+				'harga_jual' => '',
+				'harga_modal' => '',
+				'jumlah' => '',
+				'total_jual' => '',
+				'total_modal' => '',
+				'laba' => '',
+				'date_created' => time(),
+				'date_modify' => time(),
+			]
+		];
+
 		if ($transaksi) {
 			$this->response( [
 				'status' => true,
@@ -32,9 +47,10 @@ class Transaksi extends RestController {
 			], 200 );
 		} else {
 			$this->response( [
-				'status' => false,
+				'status' => true,
+				'result' => $transaksi_kosong,
 				'message' => 'id not found'
-			], 404 );
+			], 200 );
 		}
     }
 
