@@ -114,25 +114,34 @@ class M_laporan extends CI_Model
     }
 
     // edit produk
-    public function editProduk($id, $data)
+    public function editProduk($data)
     {
-//        $this->db->update($this->produk, $data, ['id' => $id]);
+		$response = $this->_client->request('PUT', 'produk', [
+			'form_params' => $data
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // cetak laporan 
     public function cetakLaporan($data)
     {
+		$response = $this->_client->request('POST', 'cetak', [
+			'form_params' => $data
+		]);
 
-//        $this->db->insert($this->cetak_laporan, $data);
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
     }
 
     // get cetak
     public function getCetak()
     {
-        
-//        $this->db->order_by($this->Bcetak, 'desc');
-        
-//        $this->db->join($this->produk, $this->Jcetak);
-//        return $this->db->get($this->cetak_laporan)->result_array();
+		$response = $this->_client->request('GET', 'cetak');
+
+		$result = json_decode($response->getBody()->getContents(), true);
+
+		return $result['result'];
     }
 }

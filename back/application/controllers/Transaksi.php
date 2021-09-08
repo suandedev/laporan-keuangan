@@ -17,14 +17,14 @@ class Transaksi extends RestController {
     // get
     public function index_get()
     {
-        $id = $this->get('id');
-        if($id != null) {
-            $transaksi = $this->api->getTransaksi($id);
-        } else {
-            $transaksi = $this->api->getTransaksi();
-        }
+		$id = $this->get('id');
+		if($id != null) {
+			$transaksi = $this->api->getTransaksi($id);
+		} else {
+			$transaksi = $this->api->getTransaksi();
+		}
 
-        if ($transaksi) {
+		if ($transaksi) {
 			$this->response( [
 				'status' => true,
 				'result' => $transaksi,

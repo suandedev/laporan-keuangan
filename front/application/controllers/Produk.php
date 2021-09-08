@@ -162,10 +162,11 @@ class Produk extends CI_Controller
                 'deskripsi' => htmlspecialchars($this->input->POST('deskripsi')),
                 'gambar' => $getProduk[0]['gambar'],
                 'date_created' => $getProduk[0]['date_created'],
-                'date_modify' => time()
+                'date_modify' => time(),
+				'id' => $id
             ];
 
-            $this->m_laporan->editProduk($id, $data);
+            $this->m_laporan->editProduk($data);
             $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
             redirect('produk');
         } else {
