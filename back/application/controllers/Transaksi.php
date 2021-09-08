@@ -93,4 +93,35 @@ class Transaksi extends RestController {
 			], 404 );
 		}
     }
+
+    // update
+    public function index_put()
+    {
+        $id = $this->put('id');
+
+        $data = [
+            'id_produk' => $this->put('id_produk'),
+            'jumlah' => $this->put('jumlah'),
+            'total_jual' => $this->put('total_jual'),
+            'total_modal' => $this->put('total_modal'),
+            'laba' => $this->put('laba'),
+            'date_created' => $this->put('date_created'),
+            'date_modify' => time(),
+        ];
+
+        if ($this->api->updateTransaksi($data, $id) > 0) {
+			//ok
+			$this->response( [
+				'status' => true,
+				'result' => $data,
+				'message' => 'data Produk has been updated'
+			], 200 );
+		} else {
+			//id not found
+			$this->response( [
+				'status' => false,
+				'message' => 'faild to update data'
+			], 404 );
+		}
+    }
 }

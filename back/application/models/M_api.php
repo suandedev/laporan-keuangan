@@ -64,4 +64,15 @@ class M_api extends CI_Model
         return $this->db->affected_rows();
         
     }
+
+    // update transaksi
+    public function updateTransaksi($data, $id)
+    {
+        
+        $this->db->update($this->laporan, $data, ['id' => $id]);
+        
+        
+        return $this->db->affected_rows();
+        
+    }
 }
