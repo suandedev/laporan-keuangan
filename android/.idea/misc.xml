@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/drawable/bg_menu.xml" value="0.18055555555555555" />
+        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/drawable/bg_white.xml" value="0.17685185185185184" />
         <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/drawable/color_selector.xml" value="0.18055555555555555" />
         <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/activity_main.xml" value="0.14221014492753623" />
-        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/fragment_home.xml" value="0.14221014492753623" />
-        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/fragment_produk.xml" value="0.14221014492753623" />
+        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/activity_produk.xml" value="0.13768115942028986" />
+        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/fragment_produk.xml" value="0.16666666666666666" />
         <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/fragment_transaksi.xml" value="0.14221014492753623" />
+        <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/layout/item_produk.xml" value="0.16666666666666666" />
         <entry key="..\:/xampp/htdocs/laporan-keuangan/android/app/src/main/res/menu/item_bottom.xml" value="0.1796875" />
       </map>
     </option>
