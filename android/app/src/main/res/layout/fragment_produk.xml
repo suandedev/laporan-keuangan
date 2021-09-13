@@ -13,17 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:orientation="vertical">
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/teal_700"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:title="Laporan Keuangan"
-                app:titleTextColor="@color/white"/>
-        </com.google.android.material.appbar.AppBarLayout>
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <androidx.appcompat.widget.Toolbar-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                android:background="@color/teal_700"-->
+<!--                app:layout_scrollFlags="scroll|enterAlways"-->
+<!--                app:title="Laporan Keuangan"-->
+<!--                app:titleTextColor="@color/white"/>-->
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
 
         <Button
             android:id="@+id/btIns"
@@ -31,6 +31,12 @@
             android:layout_height="wrap_content"
             android:text="Insert"
             android:layout_margin="10dp"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_produk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

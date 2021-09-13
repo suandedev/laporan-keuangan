@@ -1,5 +1,6 @@
 package com.made_suande_1811010036.android.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,8 @@ import retrofit2.Response;
 
 public class ProdukFragment extends Fragment {
 
+    Button btn_insert;
+
     ApiInterface mApiInterface;
     private RecyclerView mReciclerView;
     private RecyclerView.Adapter mAdapter;
@@ -45,15 +48,27 @@ public class ProdukFragment extends Fragment {
     }
 
     private void dataInit(View view) {
+
+        btn_insert = view.findViewById(R.id.btIns);
+
         mReciclerView = view.findViewById(R.id.recyclerView_produk);
         mLayoutManager = new LinearLayoutManager(getContext());
         mReciclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         pf = this;
         refresh();
+
+        btn_insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_produk, new AddProdukFragment())
+                        .commit();
+            }
+        });
     }
 
-    private void refresh() {
+    public void refresh() {
         Call<GetProduk> produkCall = mApiInterface.getProduk();
         produkCall.enqueue(new Callback<GetProduk>() {
             @Override
@@ -71,4 +86,5 @@ public class ProdukFragment extends Fragment {
             }
         });
     }
+
 }
