@@ -6,6 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Riwayat Transakasi</h6>
+            <a href="<?= base_url('cetaklaporan/cetakLaporanPdf'); ?>" class="btn btn-primary btn-sm float-right"><i class='fa fa-plus'></i> cetak</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

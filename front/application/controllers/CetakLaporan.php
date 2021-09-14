@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class CetakLaporan extends CI_Controller
 {
-    
+
     // get cetak
     public function index()
     {
@@ -44,4 +44,13 @@ class CetakLaporan extends CI_Controller
         redirect('transaksi');
     }
 
+    public function cetakLaporanPdf()
+    {
+    	$data['cetak_laporan'] = $this->m_laporan->getCetak();
+    	$data['time'] = time();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "Laporan-keuangan.pdf";
+		$this->pdf->load_view('v_cetak_pdf', $data);
+    }
 }
