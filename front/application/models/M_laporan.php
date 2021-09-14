@@ -145,4 +145,17 @@ class M_laporan extends CI_Model
 		return $result['result'];
     }
 
+//    delete ceetak laporan
+	public  function deteleAllCetakLaporan($id)
+	{
+		$response = $this->_client->request('DELETE','cetak', [
+			'form_params' => [
+				'id' => $id,
+			]
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
+	}
+
 }

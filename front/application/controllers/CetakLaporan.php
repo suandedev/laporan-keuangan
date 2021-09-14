@@ -46,11 +46,21 @@ class CetakLaporan extends CI_Controller
 
     public function cetakLaporanPdf()
     {
+
     	$data['cetak_laporan'] = $this->m_laporan->getCetak();
     	$data['time'] = time();
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->filename = "Laporan-keuangan.pdf";
 		$this->pdf->load_view('v_cetak_pdf', $data);
-    }
+
+		$getLaporan = $this->m_laporan->getCetak();
+		foreach ($getLaporan as $row) {
+			$id = $row['id'];
+
+			$this->m_laporan->deteleAllCetakLaporan($id);
+		}
+		redirect('cetaklaporan');
+
+	}
 }
