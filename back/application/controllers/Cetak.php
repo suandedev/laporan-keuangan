@@ -24,6 +24,20 @@ class Cetak extends RestController {
             $cetak = $this->api->getCetak();
         }
 
+        $cetak_kosong = [
+			[
+				'nama' => '',
+				'harga_jual' => '',
+				'harga_modal' => '',
+				'jumlah' => '',
+				'total_jual' => '',
+				'total_modal' => '',
+				'laba' => '',
+				'date_created' => time(),
+				'date_modify' => time()
+			]
+		];
+
         if ($cetak) {
 			$this->response( [
 				'status' => true,
@@ -32,9 +46,10 @@ class Cetak extends RestController {
 			], 200 );
 		} else {
 			$this->response( [
-				'status' => false,
+				'status' => true,
+				'result' => $cetak_kosong,
 				'message' => 'id not found'
-			], 404 );
+			], 200 );
 		}
     }
 
@@ -66,4 +81,30 @@ class Cetak extends RestController {
 			], 404 );
 		}
     }
+
+    public  function index_delete()
+	{
+		$id = $this->delete('id');
+		if ($id === null) {
+			$this->response( [
+				'status' => false,
+				'result' => "error",
+				'message' => 'provide an id'
+			], 404 );
+		} else {
+			if ($this->api->deteleCetak($id) > 0) {
+				//ok
+				$this->response( [
+					'status' => true,
+					'message' => 'deletes'
+				], 200 );
+			} else {
+				//id not found
+				$this->response( [
+					'status' => false,
+					'message' => 'id not found'
+				], 404 );
+			}
+		}
+	}
 }

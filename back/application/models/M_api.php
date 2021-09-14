@@ -128,4 +128,9 @@ class M_api extends CI_Model
         $this->db->insert($this->cetak_laporan, $data);
         return $this->db->affected_rows();
     }
+
+    public  function deteleCetak($id) {
+    	$this->db->delete($this->cetak_laporan, ['id' => $id]);
+		return $this->db->affected_rows();
+	}
 }
