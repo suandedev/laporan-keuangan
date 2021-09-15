@@ -3,11 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Transaksi extends CI_Controller
 {
-
-
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
 
         $this->load->library('session');
 
@@ -45,38 +44,55 @@ class Transaksi extends CI_Controller
     }
 
     // hapus 
-    public function hapus($id)
+    public function hapus($id = null)
     {
-        $this->m_laporan->hapusLaporan($id);
+    	if ($id === null){
+			$this->session->set_flashdata('pesan1', '<div class="alert alert-danger" role="alert">Data kosong, tidak dapat dihapus!</div>');
+			redirect('transaksi');
+		}else {
 
-        $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
-        redirect('transaksi');
+			$this->m_laporan->hapusLaporan($id);
+
+			$this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
+			redirect('transaksi');
+		}
     }
 
     // detail
-    public function detail($id)
+    public function detail($id = null)
     {
-        $data['title'] = 'Detail';
-        $data['transaksi'] = $this->m_laporan->getLaporan($id);
-        $this->load->view('header', $data);
-        $this->load->view('sidebar', $data);
-        $this->load->view('v_detailTransaksi', $data);
-        $this->load->view('footer');
+    	if ($id === null) {
+			$this->session->set_flashdata('pesan1', '<div class="alert alert-danger" role="alert">Data kosong, tidak dapat detail!</div>');
+			redirect('transaksi');
+		} else {
+			$data['title'] = 'Detail';
+			$data['transaksi'] = $this->m_laporan->getLaporan($id);
+			$this->load->view('header', $data);
+			$this->load->view('sidebar', $data);
+			$this->load->view('v_detailTransaksi', $data);
+			$this->load->view('footer');
+		}
     }
 
     // edit
-    public function edit($id)
+    public function edit($id = null)
     {
-        $data['title'] = 'Edit';
-        $getData = $this->m_laporan->getLaporan($id);
-        $data['produk'] = $this->m_laporan->getProduk();
-        $data['id_produk'] = $getData[0]['id_produk'];
-        $data['id'] = $getData[0]['id'];
-        $data['jumlah'] = $getData[0]['jumlah'];
-        $this->load->view('header', $data);
-        $this->load->view('sidebar', $data);
-        $this->load->view('v_editTransaksi', $data);
-        $this->load->view('footer');
+    	if ($id === null){
+			$this->session->set_flashdata('pesan1', '<div class="alert alert-danger" role="alert">Data kosong, tidak dapat diubah!</div>');
+			redirect('transaksi');
+		} else {
+
+			$data['title'] = 'Edit';
+			$getData = $this->m_laporan->getLaporan($id);
+			$data['produk'] = $this->m_laporan->getProduk();
+			$data['id_produk'] = $getData[0]['id_produk'];
+			$data['id'] = $getData[0]['id'];
+			$data['jumlah'] = $getData[0]['jumlah'];
+			$this->load->view('header', $data);
+			$this->load->view('sidebar', $data);
+			$this->load->view('v_editTransaksi', $data);
+			$this->load->view('footer');
+		}
     }
 
     // aksi edit
@@ -97,26 +113,32 @@ class Transaksi extends CI_Controller
     }
 
     // total item
-    public function totalItem($id)
+    public function totalItem($id = null)
     {
-        $getData = $this->m_laporan->getLaporan($id);
-        $harga_jual = $getData[0]['harga_jual'];
-        $harga_modal = $getData[0]['harga_modal'];
-        $jumlah = $getData[0]['jumlah'];
-        $total_jual = $harga_jual * $jumlah;
-        $total_modal = $harga_modal * $jumlah;
-        $laba = $total_jual - $total_modal;
-        $data = [
-            'total_jual' => $total_jual,
-            'total_modal' => $total_modal,
-            'laba' => $laba,
-			'id' => $id
-        ];
+    	if ($id === null) {
+			$this->session->set_flashdata('pesan1', '<div class="alert alert-danger" role="alert">Data Kosong, tidak dapat dihitung!</div>');
+			redirect('transaksi');
+		} else {
+			$getData = $this->m_laporan->getLaporan($id);
+			$harga_jual = $getData[0]['harga_jual'];
+			$harga_modal = $getData[0]['harga_modal'];
+			$jumlah = $getData[0]['jumlah'];
+			$total_jual = $harga_jual * $jumlah;
+			$total_modal = $harga_modal * $jumlah;
+			$laba = $total_jual - $total_modal;
+			$data = [
+				'total_jual' => $total_jual,
+				'total_modal' => $total_modal,
+				'laba' => $laba,
+				'id' => $id
+			];
 
-        $this->m_laporan->editLaporan($data, $id);
+			$this->m_laporan->editLaporan($data, $id);
 
-        $this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil ditotal!</div>');
-        redirect('transaksi');
+			$this->session->set_flashdata('pesan1', '<div class="alert alert-success" role="alert">Data berhasil ditotal!</div>');
+			redirect('transaksi');
+		}
+
     }
 
     // total laba

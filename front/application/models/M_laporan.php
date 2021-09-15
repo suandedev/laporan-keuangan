@@ -158,4 +158,57 @@ class M_laporan extends CI_Model
 		return $result;
 	}
 
+//	get users
+	public function getUsers($username = null)
+	{
+		if ($username === null) {
+			$response = $this->_client->request('GET', 'auth');
+
+			$result = json_decode($response->getBody()->getContents(), true);
+
+			return $result['result'];
+		} else {
+			$response = $this->_client->request('GET', 'auth', [
+				'query' => [
+					'username' => $username
+				]
+			]);
+
+			$result = json_decode($response->getBody()->getContents(), true);
+
+			return $result['result'];
+		}
+	}
+
+//	ganti password
+	public function changePassword($data)
+	{
+		$response = $this->_client->request('PUT', 'auth', [
+			'form_params' => $data
+		]);
+
+		$result = json_decode($response->getBody()->getContents(), true);
+		return $result;
+	}
+
+	public function login($username = null)
+	{
+		if ($username === null) {
+			$response = $this->_client->request('GET', 'auth');
+
+			$result = json_decode($response->getBody()->getContents(), true);
+
+			return $result['result'];
+		} else {
+			$response = $this->_client->request('GET', 'auth', [
+				'query' => [
+					'username' => $username
+				]
+			]);
+
+			$result = json_decode($response->getBody()->getContents(), true);
+
+			return $result['result'];
+		}
+	}
 }

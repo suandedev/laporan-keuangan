@@ -24,6 +24,19 @@ class Produk extends RestController {
             $produk = $this->api->getProduk();
         }
 
+        $produk_kosong = [
+        	[
+        		'id' => '',
+        		'nama' => '',
+				'harga_jual' => '',
+				'harga_modal' => '',
+				'deskripsi' => '',
+				'gambar' => '',
+				'date_created' => time(),
+				'date_modify' => time()
+			]
+		];
+
         if ($produk) {
 			$this->response( [
 				'status' => true,
@@ -32,9 +45,10 @@ class Produk extends RestController {
 			], 200 );
 		} else {
 			$this->response( [
-				'status' => false,
+				'status' => true,
+				'result' => $produk_kosong,
 				'message' => 'id not found'
-			], 404 );
+			], 200 );
 		}
     }
 

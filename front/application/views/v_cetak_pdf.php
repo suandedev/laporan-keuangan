@@ -26,6 +26,9 @@
 
 <h1>Laporan Keuangan BUMDesa BAli Agung</h1>
 <h5>Hari/Tanggal  :  <?= date('l-d-m-Y', $time) ?> </h5>
+<h5>total laba : Rp. <?= $laba ?></h5>
+<h5>total jual : Rp. <?= $harga_jual ?></h5>
+<h5>total modal : Rp. <?= $harga_modal ?></h5>
 
 	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead class="text-center">

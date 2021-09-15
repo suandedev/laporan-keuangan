@@ -6,6 +6,7 @@ class M_api extends CI_Model
     protected $laporan = 'laporan';
     protected $produk = 'produk';
     protected $cetak_laporan = 'cetak_laporan';
+	protected $users = 'users';
 
     // join 
     protected $Jproduk;
@@ -13,6 +14,7 @@ class M_api extends CI_Model
 
     //select 
     protected $Sproduk;
+	protected $Scetak;
 
     // order by
     protected $Blaporan;
@@ -26,6 +28,7 @@ class M_api extends CI_Model
 
         // select
         $this->Sproduk = "$this->laporan.id, $this->laporan.id_produk, $this->produk.nama, $this->produk.harga_jual, $this->produk.harga_modal, $this->produk.gambar, $this->laporan.jumlah, $this->laporan.total_jual, $this->laporan.total_modal, $this->laporan.laba, $this->laporan.date_created, $this->laporan.date_modify,";
+		$this->Scetak = "$this->cetak_laporan.id, $this->produk.nama, $this->produk.harga_jual, $this->produk.harga_modal, $this->produk.gambar, $this->cetak_laporan.jumlah, $this->cetak_laporan.total_jual, $this->cetak_laporan.total_modal, $this->cetak_laporan.laba, $this->cetak_laporan.date_created, $this->cetak_laporan.date_modify,";
 
         //join
         $this->Jproduk = "$this->produk.id = $this->laporan.id_produk";
@@ -117,7 +120,8 @@ class M_api extends CI_Model
     public function getCetak($id = null)
     {
         $this->db->order_by($this->Bcetak, 'desc');
-        
+
+        $this->db->select($this->Scetak);
         $this->db->join($this->produk, $this->Jcetak);
         return $this->db->get($this->cetak_laporan)->result_array();
     }
@@ -129,8 +133,33 @@ class M_api extends CI_Model
         return $this->db->affected_rows();
     }
 
+//    delete cetak laporan
     public  function deteleCetak($id) {
     	$this->db->delete($this->cetak_laporan, ['id' => $id]);
+		return $this->db->affected_rows();
+	}
+
+//	get user
+	public function  getUser($username = null)
+	{
+		if ($username != null) {
+			$this->db->where(['username' => $username]);
+		}
+
+		return $this->db->get($this->users)->result_array();
+	}
+
+//	insert data users
+	public function createUsers($data)
+	{
+		$this->db->insert($this->users, $data);
+		return $this->db->affected_rows();
+	}
+
+//	update users
+	public function updateUsers($data, $id)
+	{
+		$this->db->update($this->users, $data, ['id' => $id]);
 		return $this->db->affected_rows();
 	}
 }

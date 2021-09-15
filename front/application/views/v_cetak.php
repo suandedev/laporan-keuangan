@@ -7,7 +7,8 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Riwayat Transakasi</h6>
             <a href="<?= base_url('cetaklaporan/cetakLaporanPdf'); ?>" class="btn btn-primary btn-sm float-right"><i class='fa fa-plus'></i> cetak</a>
-        </div>
+			<a href="<?= base_url('cetaklaporan/cetakLaporanHapus'); ?>" class="btn btn-danger btn-sm float-right" onclick="return confirm('yakin?')"><i class='fa fa-trash'></i> hapus</a>
+		</div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

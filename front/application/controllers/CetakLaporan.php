@@ -3,8 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class CetakLaporan extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+		is_logged_in();
+	}
 
-    // get cetak
+	// get cetak
     public function index()
     {
         $data['title'] = 'Laporan';
@@ -47,13 +52,33 @@ class CetakLaporan extends CI_Controller
     public function cetakLaporanPdf()
     {
 
+		$getCetak = $this->m_laporan->getCetak();
+		foreach ($getCetak as $row) :
+			$laba[] = $row['laba'];
+			$total_harga_modal[] = $row['total_modal'];
+			$total_harga_jual[] = $row['total_jual'];
+
+			$dataTotalLaba = array_sum($laba);
+			$dataTotalHargaModal = array_sum($total_harga_modal);
+			$dataTotalHargaJual = array_sum($total_harga_jual);
+
+		endforeach;
+
     	$data['cetak_laporan'] = $this->m_laporan->getCetak();
+    	$data['laba'] = $dataTotalLaba;
+		$data['harga_jual'] = $dataTotalHargaJual;
+		$data['harga_modal'] = $dataTotalHargaModal;
     	$data['time'] = time();
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->filename = "Laporan-keuangan.pdf";
 		$this->pdf->load_view('v_cetak_pdf', $data);
 
+
+	}
+
+	public function cetakLaporanHapus()
+	{
 		$getLaporan = $this->m_laporan->getCetak();
 		foreach ($getLaporan as $row) {
 			$id = $row['id'];
@@ -61,6 +86,5 @@ class CetakLaporan extends CI_Controller
 			$this->m_laporan->deteleAllCetakLaporan($id);
 		}
 		redirect('cetaklaporan');
-
 	}
 }

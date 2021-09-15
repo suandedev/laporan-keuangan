@@ -43,6 +43,26 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+			<!-- Nav Item - logout -->
+			<li class="nav-item active">
+				<a class="nav-link" href="<?= base_url('auth/logout'); ?>">
+					<i class="fas fa-fw fa-sign-out-alt"></i>
+					<span>logout</span></a>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Nav Item - change password -->
+			<li class="nav-item active">
+				<a class="nav-link" href="<?= base_url('auth/changePassword'); ?>">
+					<i class="fas fa-fw fa-exchange-alt"></i>
+					<span>ganti password</span></a>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
