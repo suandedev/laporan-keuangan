@@ -1,6 +1,8 @@
 package com.made_suande_1811010036.android.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.made_suande_1811010036.android.R;
+import com.made_suande_1811010036.android.fragment.HomeFragment;
 import com.made_suande_1811010036.android.model.Produk;
 
 import java.util.List;
@@ -32,13 +35,16 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.mTextViewNama.setText("nama produk : " + mProdukList.get(position).getNama());
         holder.mTextViewHarga_jual.setText("harga produk : " + mProdukList.get(position).getHarga_jual());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "ok", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(v.getContext(), HomeFragment.class);
+                intent.putExtra("id", mProdukList.get(position).getId());
+                v.getContext().startActivity(intent);
+
             }
         });
     }
